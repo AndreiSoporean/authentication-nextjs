@@ -1,0 +1,32 @@
+.header {
+  padding: 3rem 12rem;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background: var(--green);
+}
+
+.title {
+  font-size: 32px;
+  font-weight: bold;
+  line-height: 0;
+  color: white;
+}
+
+.navigation {
+  display: flex;
+  list-style-type: none;
+  color: var(--yellow);
+}
+
+.menuBtn {
+  padding: 5px 10px;
+}
+
+.main {
+  min-height: 100vh;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

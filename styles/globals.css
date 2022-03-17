@@ -1,3 +1,26 @@
+:root {
+  --green: #3caea3;
+  --yellow: #f6d55c;
+  --orange: #ed553b;
+  --gray: #e8e9ec;
+
+  /* blue */
+  --blue0: #f1f8fe;
+  --blue1: #b2d4f3;
+  --blue2: #72a1d2;
+  --blue3: #4780c3;
+  --blue4: #37669e;
+  --blue5: #27486d;
+
+  /* gray */
+  --gray0: #f8f9fa;
+  --gray1: #e2e7ea;
+  --gray2: #d0d6de;
+  --gray3: #bac4cd;
+  --gray4: #8a95a5;
+  --gray5: #626b79;
+}
+
 html,
 body {
   padding: 0;

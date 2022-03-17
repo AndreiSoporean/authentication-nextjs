@@ -1,0 +1,17 @@
+{
+  "eslint.alwaysShowStatus": true,
+  "editor.codeActionsOnSave": {
+      "source.fixAll": true
+  },
+  "eslint.validate": [
+      "javascript"
+  ],
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}

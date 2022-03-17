@@ -1,9 +1,9 @@
-import type { NextPage } from 'next'
-import { getSession } from 'next-auth/client';
+import type { NextPage } from "next";
+import { getSession } from "next-auth/client";
 
 const Profile: NextPage = () => {
-  return <div>Profile</div>
-}
+  return <div>Profile</div>;
+};
 
 export const getServerSideProps = async (context: any) => {
   const session = await getSession({ req: context.req });
@@ -11,17 +11,17 @@ export const getServerSideProps = async (context: any) => {
   if (!session) {
     return {
       redirect: {
-        destination: '/auth',
-        permanent: false
-      }
-    }
+        destination: "/auth",
+        permanent: false,
+      },
+    };
   }
 
   return {
     props: {
-      session
-    }
-  }
-}
+      session,
+    },
+  };
+};
 
 export default Profile;

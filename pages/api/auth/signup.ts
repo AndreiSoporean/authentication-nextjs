@@ -1,24 +1,29 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiRequest, NextApiResponse } from "next";
 import { hashPassword } from "../../../lib/auth";
 import { connectToDataBase } from "../../../lib/db";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method !== 'POST') {
+  if (req.method !== "POST") {
     return;
   }
 
   const data = req.body;
   const { email, username, password } = data;
 
-  if (!email || !email.includes('@') || !password || password.trim().length < 5) {
-    res.status(422).json({ message: "Invalid input!" })
+  if (
+    !email ||
+    !email.includes("@") ||
+    !password ||
+    password.trim().length < 5
+  ) {
+    res.status(422).json({ message: "Invalid input!" });
     return;
   }
 
   const client = await connectToDataBase();
   const db = client.db();
 
-  const existingUser = await db.collection('users').findOne({ email: email });
+  const existingUser = await db.collection("users").findOne({ email: email });
 
   if (existingUser) {
     res.status(422).json({ message: "User already exists!" });
@@ -26,16 +31,16 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     return;
   }
 
-  const hashedPassword = await hashPassword(password)
+  const hashedPassword = await hashPassword(password);
 
-  const result = await db.collection('users').insertOne({
+  const result = await db.collection("users").insertOne({
     email,
     password: hashedPassword,
-    username
+    username,
   });
 
   res.status(201).json({ message: "Created user!" });
   client.close();
-}
+};
 
 export default handler;

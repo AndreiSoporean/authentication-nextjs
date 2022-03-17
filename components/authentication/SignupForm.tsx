@@ -1,25 +1,25 @@
-import { MutableRefObject, useRef } from "react"
+import { MutableRefObject, useRef } from "react";
 import { CreateUser } from "../../models/users";
-import styles from "./AuthForm.module.css"
+import styles from "./AuthForm.module.css";
 
 const createUser = async (formData: CreateUser) => {
-  const result = await fetch('/api/auth/signup', {
+  const result = await fetch("/api/auth/signup", {
     method: "POST",
     body: JSON.stringify(formData),
     headers: {
-      'Content-Type': 'application/json'
-    }
+      "Content-Type": "application/json",
+    },
   });
 
   const data = await result.json();
-  console.log({ data })
+  console.log({ data });
 
   if (!result.ok) {
-    throw new Error(data.message || 'Something went wrong');
+    throw new Error(data.message || "Something went wrong");
   }
 
   return data;
-}
+};
 
 const SignupForm: React.FC = () => {
   const username = useRef() as MutableRefObject<HTMLInputElement>;
@@ -31,24 +31,29 @@ const SignupForm: React.FC = () => {
     const formData = {
       username: username.current.value,
       email: email.current.value,
-      password: password.current.value
-    }
+      password: password.current.value,
+    };
 
     try {
       const result = await createUser(formData);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
-  console.log('aaa ', email.current && email.current.value)
+  console.log("aaa ", email.current && email.current.value);
   const enableButton = email.current && email.current.value;
 
   return (
     <form className={styles.form} onSubmit={handleSubmitForm}>
       <div className={styles.labelAndInput}>
         <label className={styles.inputLabel}>Name:</label>
-        <input className={styles.textfield} type="text" required ref={username} />
+        <input
+          className={styles.textfield}
+          type="text"
+          required
+          ref={username}
+        />
       </div>
       <div className={styles.labelAndInput}>
         <label className={styles.inputLabel}>Email:</label>
@@ -56,11 +61,18 @@ const SignupForm: React.FC = () => {
       </div>
       <div className={styles.labelAndInput}>
         <label className={styles.inputLabel}>Password:</label>
-        <input className={styles.textfield} type="password" required ref={password} />
+        <input
+          className={styles.textfield}
+          type="password"
+          required
+          ref={password}
+        />
       </div>
-      <button className={styles.submitBtn} type="submit">Create Account</button>
-    </form >
-  )
-}
+      <button className={styles.submitBtn} type="submit">
+        Create Account
+      </button>
+    </form>
+  );
+};
 
 export default SignupForm;

@@ -1,11 +1,25 @@
-import type { NextPage } from "next";
+import type {
+  GetServerSideProps,
+  InferGetServerSidePropsType,
+  NextPage,
+} from "next";
 import { getSession } from "next-auth/client";
+import React from "react";
+import ChangePasswordForm from "../components/profile/ChangePassForm";
+import UserWelcome from "../components/profile/UserWelcome";
 
-const Profile: NextPage = () => {
-  return <div>Profile</div>;
+const Profile: NextPage = (
+  props: InferGetServerSidePropsType<typeof getServerSideProps>
+) => {
+  return (
+    <>
+      <UserWelcome user={props.session.user} />
+      <ChangePasswordForm />
+    </>
+  );
 };
 
-export const getServerSideProps = async (context: any) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession({ req: context.req });
 
   if (!session) {

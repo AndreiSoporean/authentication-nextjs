@@ -4,7 +4,7 @@ import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 
 const AuthController: React.FC = () => {
-  const [isLogin, setIsLogin] = useState<boolean>(false);
+  const [isLogin, setIsLogin] = useState<boolean>(true);
 
   const toggleForm = (): void => {
     setIsLogin((prevState) => !prevState);

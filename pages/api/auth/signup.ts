@@ -16,7 +16,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     !password ||
     password.trim().length < 5
   ) {
-    res.status(422).json({ message: "Invalid input!" });
+    res.status(422).json({ error: true, message: "Invalid input!" });
     return;
   }
 
@@ -26,7 +26,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const existingUser = await db.collection("users").findOne({ email: email });
 
   if (existingUser) {
-    res.status(422).json({ message: "User already exists!" });
+    res.status(422).json({ error: true, message: "User already exists!" });
     client.close();
     return;
   }
@@ -39,7 +39,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     username,
   });
 
-  res.status(201).json({ message: "Created user!" });
+  res.status(201).json({ error: false, message: "Created user!" });
   client.close();
 };
 
